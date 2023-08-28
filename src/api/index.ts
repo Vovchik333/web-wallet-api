@@ -1,7 +1,7 @@
 import { Router } from "express";
-import user from "./user"
-import wallet from "./wallet"
-import transaction from "./transaction"
+import user from "./routes/user-routes"
+import wallet from "./routes/wallet-routes"
+import transaction from "./routes/transaction-routes"
 
 const router = Router();
 

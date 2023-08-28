@@ -28,10 +28,6 @@ export default class WalletRepository implements IWalletRepository {
             [id]
         );
 
-        if(!foundWallet) {
-            return undefined;
-        }
-
         return foundWallet[0];
     }
 
@@ -41,36 +37,24 @@ export default class WalletRepository implements IWalletRepository {
             [address]
         );
 
-        if(!foundWallet) {
-            return undefined;
-        }
-
         return foundWallet[0];
     }
 
-    async updateBalance(address: string, amount: number): Promise<number | undefined> {
+    async updateBalance(address: string, amount: number): Promise<boolean> {
         const result = await execute<ResultSetHeader>(
             walletQueries.updateBalance, 
             [amount, new Date(), address]
         );
 
-        if(result.affectedRows < 1) {
-            return undefined;
-        }
-
-        return result.affectedRows;
+        return result.affectedRows > 0;
     }
 
-    async delete(id: string): Promise<number | undefined> {
+    async delete(id: string): Promise<boolean> {
         const result = await execute<ResultSetHeader>(
             walletQueries.deleteById, 
             [id]
         );
 
-        if(result.affectedRows < 1) {
-            return undefined;
-        }
-
-        return result.affectedRows;
+        return result.affectedRows > 0;
     }
 }
