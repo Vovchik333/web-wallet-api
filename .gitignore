@@ -9,3 +9,6 @@ node_modules/
 
 # ignore ALL files in ANY directory named dist
 dist/
+
+# ignore ALL files in ANY directory named keys
+keys/

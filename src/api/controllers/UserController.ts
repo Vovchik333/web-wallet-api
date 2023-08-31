@@ -10,23 +10,23 @@ export default class UserController {
         this.userService = new UserService();
     }
 
+    registerUser = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const user: User = req.body;
+            const id: string = await this.userService.create(user);
+    
+            return res.status(StatusHTTP.OK).send({ id });
+        } catch(err) {
+            next(err);
+        }
+    }
+
     getUser = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id: string = req.params.id;
             const user: User = await this.userService.getOne(id);
 
             return res.status(StatusHTTP.OK).send(user);
-        } catch(err) {
-            next(err);
-        }
-    }
-
-    createUser = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const user: User = req.body;
-            const id: string = await this.userService.create(user);
-
-            return res.status(StatusHTTP.OK).send({ id });
         } catch(err) {
             next(err);
         }

@@ -3,6 +3,9 @@ export const userQueries = {
     INSERT INTO web_wallet_db.users (id, name, surname, email, password)
     VALUES (?, ?, ?, ?, ?);
     `,
+    findByEmail: `
+    SELECT * FROM web_wallet_db.users WHERE email = ?;
+    `,
     findById: `
     SELECT * FROM web_wallet_db.users WHERE id = ?;
     `,

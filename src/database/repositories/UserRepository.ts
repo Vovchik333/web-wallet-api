@@ -4,10 +4,14 @@ import { execute, pool } from "..";
 import { userQueries } from "../queries/user-queries";
 import { ResultSetHeader } from "mysql2";
 import IUserRepository from "../interfaces/IUserRepository";
+import bcrypt from "bcrypt";
 
 export default class UserRepository implements IUserRepository {
+    private readonly saltRounds = 10;
+
     async save(user: User): Promise<string | undefined> {
         user.id = randomUUID();
+        user.password = await bcrypt.hash(user.password, this.saltRounds);
 
         const result = await execute<ResultSetHeader>(
             userQueries.save, 
@@ -19,6 +23,15 @@ export default class UserRepository implements IUserRepository {
         }
 
         return user.id;
+    }
+
+    async findByEmail(email: string): Promise<User | undefined> {
+        const foundUser = await execute<User[]>(
+            userQueries.findByEmail, 
+            [email]
+        );
+
+        return foundUser[0];
     }
 
     async findById(id: string): Promise<User | undefined> {

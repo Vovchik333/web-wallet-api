@@ -6,6 +6,7 @@ export const errorResponder = (
     req: Request, 
     res: Response,
     next: NextFunction) => {
+    console.log(err);
     const status = err.statusCode || 404;
     const message = err.message;
     res.status(status).send({ message });

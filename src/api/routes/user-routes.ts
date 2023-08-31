@@ -1,14 +1,14 @@
 import { Router } from "express";
 import UserController from "../controllers/UserController";
+import { authorization } from "../../auth/authentication";
 
 const router = Router();
 const userController = new UserController();
 
 router.route('/:id')
-    .get(userController.getUser)
-    .delete(userController.deleteUser);
+    .get(authorization, userController.getUser)
+    .delete(authorization, userController.deleteUser);
 router.route('/')
-    .post(userController.createUser)
-    .put(userController.updateUser);
+    .put(authorization, userController.updateUser);
 
 export default router;
