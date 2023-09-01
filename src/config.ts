@@ -6,8 +6,3 @@ export const databaseSource = {
       DATABASE: process.env.DATABASE,
       DB_CONNECTION_LIMIT: process.env.DB_CONNECTION_LIMIT ? parseInt(process.env.DB_CONNECTION_LIMIT) : 4
 };
-
-export const jwtKeys = {
-      PRIVATE_KEY: process.env.ACCESS_TOKEN_PRIVATE_KEY,
-      PUBLIC_KEY: process.env.ACCESS_TOKEN_PUBLIC_KEY
-};

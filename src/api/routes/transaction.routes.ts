@@ -1,8 +1,7 @@
 import { Router } from "express";
-import TransactionController from "../controllers/TransactionController";
+import * as transactionController from "../controllers/transaction.controller";
 
 const router = Router();
-const transactionController = new TransactionController();
 
 router.post('/deposit', transactionController.deposit);
 router.post('/transfer', transactionController.transfer);

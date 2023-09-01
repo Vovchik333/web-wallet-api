@@ -1,8 +1,8 @@
 import { signJwt } from "../../auth/jwt";
-import UserRepository from "../../database/repositories/UserRepository";
 import AppError from "../../errors/AppError";
 import { StatusHTTP } from "../StatusHTTP";
 import bcrypt from "bcrypt";
+import * as userRepository from "../../database/repositories/user.repository"
 
 type LoginResult = {
     user: { 
@@ -11,8 +11,6 @@ type LoginResult = {
     }, 
     token: string
 }
-
-const userRepository = new UserRepository();
 
 export const login = async (email: string, password: string): Promise<LoginResult>  => {
     try {

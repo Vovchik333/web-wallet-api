@@ -1,9 +1,8 @@
 import { Router } from "express";
-import UserController from "../controllers/UserController";
-import { authorization } from "../../auth/authentication";
+import * as userController from "../controllers/user.controller";
+import { authorization } from "../../auth/authorization";
 
 const router = Router();
-const userController = new UserController();
 
 router.route('/:id')
     .get(authorization, userController.getUser)

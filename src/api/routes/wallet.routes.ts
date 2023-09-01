@@ -1,8 +1,7 @@
 import { Router } from "express";
-import WalletController from "../controllers/WalletController";
+import * as walletController from "../controllers/wallet.controller";
 
 const router = Router();
-const walletController = new WalletController();
 
 router.route('/:id')
     .get(walletController.getWallet)
