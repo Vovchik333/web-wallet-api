@@ -1,5 +1,6 @@
 import { Pool, ResultSetHeader, RowDataPacket, createPool } from "mysql2/promise";
 import { databaseSource } from "../config";
+import { logger } from "../logging/logger";
 
 export let pool: Pool;
 
@@ -15,8 +16,9 @@ export const initPool = () => {
             }
         );
 
-        console.log('MySql Adapter Pool generated successfully');
+        logger.info('MySql Adapter Pool generated successfully');
     } catch (err) {
+        logger.error('failed to initialized pool');
         throw new Error('failed to initialized pool');
     }
 }

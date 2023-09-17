@@ -6,3 +6,5 @@ export const databaseSource = {
       DATABASE: process.env.DATABASE,
       DB_CONNECTION_LIMIT: process.env.DB_CONNECTION_LIMIT ? parseInt(process.env.DB_CONNECTION_LIMIT) : 4
 };
+
+export const logDirectory = process.env.LOG_DIRECTORY

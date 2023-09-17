@@ -4,6 +4,7 @@ import cors from "cors";
 import routes from "./api/index";
 import { initPool } from "./database/connector";
 import { errorResponder } from "./errors/error-handlers";
+import { logger } from "./logging/logger";
 
 const app: Express = express();
 const port = process.env.PORT || 8080;
@@ -16,5 +17,5 @@ app.use('/api/', routes);
 app.use(errorResponder);
 
 app.listen(port, () => {
-    console.log(`server listening at http://localhost:${port}`);
+    logger.info(`server listening at http://localhost:${port}`);
 });

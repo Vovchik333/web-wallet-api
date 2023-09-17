@@ -12,3 +12,6 @@ dist/
 
 # ignore ALL files in ANY directory named keys
 keys/
+
+# ignore ALL files in ANY directory named logs
+logs/
